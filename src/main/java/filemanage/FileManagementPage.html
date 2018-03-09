@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:wicket="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>ファイル管理ページ</title>
+</head>
+<body>
+
+	<wicket:extend>
+
+	<form wicket:id="uploadForm">
+		アップロードファイル: <input type="file" value="" wicket:id="uploadField" />
+		<input type="submit" value="upload" wicket:id="uploadButton" />
+	</form>
+
+	<form wicket:id="downloadForm">
+		<select wicket:id="choice"></select>
+		<input wicket:id="downloadButton" type="submit" value="donwload">
+	</form>
+
+	</wicket:extend>
+
+</body>
+</html>

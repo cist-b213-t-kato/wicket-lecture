@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:wicket="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form wicket:id="form">
+    投稿者名:<input type="text" wicket:id="nameField" />
+    本文:<input type="text" wicket:id="bodyField"/>
+    <button type="submit">送信</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>
+            投稿者名
+        </th>
+        <th>
+            本文
+        </th>
+    </tr>
+    </thead>
+    <tbody wicket:id="bodyList">
+    <tr>
+        <td>
+            <span wicket:id="name"></span>
+        </td>
+        <td>
+            <span wicket:id="body"></span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
