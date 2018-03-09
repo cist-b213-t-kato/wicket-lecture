@@ -5,6 +5,7 @@ import org.apache.wicket.markup.html.link.Link;
 import api.JSPage;
 import calendar.CalendarPage;
 import filemanage.FileManagementPage;
+import tips.DropDownPage;
 import wicket_lecture.LINEClone.Ver1.AjaxPage;
 import wicket_lecture.LINEClone.Ver1.BeanListViewPage;
 import wicket_lecture.LINEClone.Ver1.BoardPage;
@@ -134,6 +135,15 @@ public class TopPage extends MyPage {
         	}
         };
         add(toAPIPage);
+
+        Link<Void> toDropDownPage = new Link<Void>("toDropDownPage"){
+
+        	@Override
+        	public void onClick() {
+        		setResponsePage(new DropDownPage());
+        	}
+        };
+        add(toDropDownPage);
 
     }
 
