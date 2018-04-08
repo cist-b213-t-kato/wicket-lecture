@@ -20,8 +20,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>wicket_lecture</groupId>
-	<artifactId>wicket_lecture</artifactId>
+	<groupId>wicket-lecture</groupId>
+	<artifactId>wicket-lecture</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 		<!-- TODO project name  -->
@@ -123,27 +123,6 @@
 		    <version>1.9.13</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.googlecode.wicket-jquery-ui/wicket-jquery-ui -->
-		<dependency>
-		    <groupId>com.googlecode.wicket-jquery-ui</groupId>
-		    <artifactId>wicket-jquery-ui</artifactId>
-		    <version>${wicket.version}</version>
-		    <scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.googlecode.wicket-jquery-ui</groupId>
-			<artifactId>wicket-jquery-ui-theme-uilightness</artifactId>
-			<version>${wicket.version}</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.googlecode.wicket-jquery-ui/jquery-ui-calendar -->
-		<dependency>
-		    <groupId>com.googlecode.wicket-jquery-ui</groupId>
-		    <artifactId>jquery-ui-calendar</artifactId>
-		    <version>6.2.2</version>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
 		    <groupId>com.google.code.gson</groupId>
@@ -239,6 +218,21 @@
                     </execution>
                 </executions>
             </plugin>
+
+
+            <!-- Tomcat Maven plugin to deploy war file -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://localhost:8080/manager/text</url>
+<!--                     <server>TomcatServer</server> -->
+                    <server>tomcat-localhost</server>
+                    <path>/lecture</path>
+                </configuration>
+            </plugin>
+
 		</plugins>
 	</build>
 
