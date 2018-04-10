@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import org.postgresql.largeobject.LargeObject;
 import org.postgresql.largeobject.LargeObjectManager;
 
-import wicket_lecture.DBSetting;
+import wicket_lecture.DBUtil;
 
 /**
  *
@@ -23,7 +23,7 @@ public class FileManager {
 
 	public static void upload( String fileName ) {
 
-		try (Connection conn = DBSetting.getConnection();
+		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement ps = conn.prepareStatement("insert into file(objectid) values(?)");) {
 
 			// 全ての LargeObject API の呼び出しはトランザクション内部でなければなりません。
@@ -69,7 +69,7 @@ public class FileManager {
 
 	public static void download(String fileName) {
 
-		try (Connection conn = DBSetting.getConnection();
+		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement ps = conn.prepareStatement("SELECT objectid FROM file WHERE id = 4");) {
 			// 全ての LargeObject API の呼び出しはトランザクション内部でなければなりません。
 			conn.setAutoCommit(false);

@@ -1,7 +1,6 @@
 package wicket_lecture.LINEClone.Ver1;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +21,8 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
 import org.apache.wicket.util.time.Duration;
 
+import wicket_lecture.DBUtil;
+
 public class BoardPage extends WebPage{
     IModel<String> bodyModel;
     IModel<String> nameModel;
@@ -39,7 +40,7 @@ public class BoardPage extends WebPage{
 
 		List<Message> messageList = new ArrayList<>();
 
-		try ( Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/board","postgres","postgres");
+		try ( Connection conn = DBUtil.getConnection();
 				PreparedStatement ps = conn.prepareStatement("select * from message"); ) {
 			ResultSet rs = ps.executeQuery();
 
@@ -70,11 +71,7 @@ public class BoardPage extends WebPage{
 			e1.printStackTrace();
 		}
 
-		String url = "jdbc:postgresql://localhost:5432/board";
-		String user = "postgres";
-		String pass = "postgres";
-
-		try ( Connection conn = DriverManager.getConnection(url , user, pass); ) {
+		try ( Connection conn = DBUtil.getConnection(); ) {
 			String sql = "insert into message( name, body ) VALUES( ?, ? )";
 
 			PreparedStatement ps = conn.prepareStatement(sql);

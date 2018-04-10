@@ -15,7 +15,7 @@ import java.util.List;
 import org.postgresql.largeobject.LargeObject;
 import org.postgresql.largeobject.LargeObjectManager;
 
-import wicket_lecture.DBSetting;
+import wicket_lecture.DBUtil;
 
 /**
  *
@@ -25,6 +25,15 @@ import wicket_lecture.DBSetting;
  * @see http://nemoplus.hateblo.jp/entry/20090221/1235230805
  */
 public class FileDAO {
+
+	public FileDAO() {
+		try {
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	public void insertFile( String fileName ) {
 		// ファイルを開きます。
@@ -39,7 +48,7 @@ public class FileDAO {
 
 	public void insertFile( InputStream fis, String fileName ) {
 
-		try (Connection conn = DBSetting.getConnection();
+		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement ps = conn.prepareStatement("insert into file(name, objectid) values(?, ?)");) {
 
 			// 全ての LargeObject API の呼び出しはトランザクション内部でなければなりません。
@@ -83,7 +92,7 @@ public class FileDAO {
 
 		byte[] buf = null;
 
-		try (Connection conn = DBSetting.getConnection();
+		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement ps = conn.prepareStatement("SELECT objectid FROM file WHERE id = ?");) {
 			// 全ての LargeObject API の呼び出しはトランザクション内部でなければなりません。
 			conn.setAutoCommit(false);
@@ -121,7 +130,7 @@ public class FileDAO {
 
 		List<FileKeyBean> list = new ArrayList<>();
 
-		try (Connection conn = DBSetting.getConnection();
+		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement ps = conn.prepareStatement("SELECT id, name FROM file");) {
 
 			ResultSet rs = ps.executeQuery();
