@@ -105,19 +105,20 @@ public class BoardPage extends WebPage{
         	}
         };
 
+        TextField<String> nameField = new TextField<>("nameField", nameModel);
+        TextField<String> bodyField = new TextField<>("bodyField", bodyModel);
+
         Form<Void> form = new Form<Void>("form") {
             @Override
             protected void onSubmit() {
                 super.onSubmit();
                 Message message = new Message(nameModel.getObject(), bodyModel.getObject());
                 insert(message);
+                bodyField.setModel(Model.of(""));
             }
         };
         add(form);
-
-        TextField<String> nameField = new TextField<>("nameField", nameModel);
         form.add(nameField);
-        TextField<String> bodyField = new TextField<>("bodyField", bodyModel);
         form.add(bodyField);
 
         WebMarkupContainer messageContainer = new WebMarkupContainer("messageContainer");
