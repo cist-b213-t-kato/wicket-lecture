@@ -112,7 +112,7 @@ public class BoardPage extends WebPage{
             @Override
             protected void onSubmit() {
                 super.onSubmit();
-                Message message = new Message(nameModel.getObject(), bodyModel.getObject());
+                Message message = new Message(nameField.getModelObject(), bodyField.getModelObject());
                 insert(message);
                 bodyField.setModel(Model.of(""));
             }
@@ -136,7 +136,7 @@ public class BoardPage extends WebPage{
 
         messageContainer.add(messageListView);
 
-        AjaxSelfUpdatingTimerBehavior behavior = new AjaxSelfUpdatingTimerBehavior(Duration.seconds(5)){
+        AjaxSelfUpdatingTimerBehavior behavior = new AjaxSelfUpdatingTimerBehavior(Duration.seconds(20)){
         	@Override
         	protected void onPostProcessTarget(AjaxRequestTarget target) {
         		super.onPostProcessTarget(target);
